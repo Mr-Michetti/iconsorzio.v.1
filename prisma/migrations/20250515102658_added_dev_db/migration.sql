@@ -1,0 +1,93 @@
+/*
+  Warnings:
+
+  - You are about to drop the `AlertPrenotazioni` table. If the table is not empty, all the data it contains will be lost.
+
+*/
+-- DropForeignKey
+ALTER TABLE "AlertPrenotazioni" DROP CONSTRAINT "AlertPrenotazioni_companyId_fkey";
+
+-- AlterTable
+ALTER TABLE "ActiveCompany" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "Allievo" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+ALTER COLUMN "nome" DROP NOT NULL,
+ALTER COLUMN "cognome" DROP NOT NULL,
+ALTER COLUMN "nascitaLuogo" DROP NOT NULL,
+ALTER COLUMN "nascitaData" DROP NOT NULL,
+ALTER COLUMN "genere" DROP NOT NULL,
+ALTER COLUMN "indirizzo" DROP NOT NULL,
+ALTER COLUMN "provincia" DROP NOT NULL,
+ALTER COLUMN "comune" DROP NOT NULL,
+ALTER COLUMN "cap" DROP NOT NULL,
+ALTER COLUMN "tel" DROP NOT NULL,
+ALTER COLUMN "email" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "AllievoIstruzione" ADD COLUMN     "istruzioneCompletata" BOOLEAN NOT NULL DEFAULT false;
+
+-- AlterTable
+ALTER TABLE "AllievoServizio" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN     "createdFrom" TEXT DEFAULT E'consorzio';
+
+-- AlterTable
+ALTER TABLE "Autoscuola" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN     "limitePrenotazioni" INTEGER DEFAULT 5,
+ALTER COLUMN "denominazione" DROP NOT NULL,
+ALTER COLUMN "consorzio_toggle" DROP NOT NULL,
+ALTER COLUMN "rag_soc" DROP NOT NULL,
+ALTER COLUMN "provincia" DROP NOT NULL,
+ALTER COLUMN "comune" DROP NOT NULL,
+ALTER COLUMN "indirizzo" DROP NOT NULL,
+ALTER COLUMN "n_civ" DROP NOT NULL,
+ALTER COLUMN "cod_fisc" DROP NOT NULL,
+ALTER COLUMN "part_iva" DROP NOT NULL,
+ALTER COLUMN "tel_1" DROP NOT NULL,
+ALTER COLUMN "tel_2" DROP NOT NULL,
+ALTER COLUMN "cel" DROP NOT NULL,
+ALTER COLUMN "fax" DROP NOT NULL,
+ALTER COLUMN "email" DROP NOT NULL,
+ALTER COLUMN "pec" DROP NOT NULL,
+ALTER COLUMN "sdi" DROP NOT NULL,
+ALTER COLUMN "iban" DROP NOT NULL,
+ALTER COLUMN "note" DROP NOT NULL,
+ALTER COLUMN "isActive" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "Company" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "CompanyProfile" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "CompanyRulesGroup" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "PatentiOnVeicoli" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "Rule" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "RulesGroup" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "UserPassword" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "UserProfile" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "UsersCompanies" ADD COLUMN     "appartenenza" TEXT NOT NULL DEFAULT E'consorzio',
+ADD COLUMN     "autoscuolaAppartenenza" TEXT,
+ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "Workplace" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP;
+
+-- DropTable
+DROP TABLE "AlertPrenotazioni";
