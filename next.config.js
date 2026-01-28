@@ -1,17 +1,3 @@
-// This file sets a custom webpack configuration to use your Next.js app
-// with Sentry.
-// https://nextjs.org/docs/api-reference/next.config.js/introduction
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-const { withSentryConfig } = require('@sentry/nextjs');
-
-module.exports = {
-    pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
-    i18n: {
-        defaultLocale: 'it-IT',
-        locales: ['it-IT']
-    }
-}
-
 const {
     PHASE_DEVELOPMENT_SERVER,
     PHASE_PRODUCTION_BUILD,
@@ -32,10 +18,13 @@ module.exports = (phase) => {
             if (isProd) return false
         })(),
     }
-    return { env }
+
+    return {
+        env,
+        pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+        i18n: {
+            defaultLocale: 'it-IT',
+            locales: ['it-IT']
+        }
+    }
 }
-module.exports = withSentryConfig(
-    module.exports,
-    { silent: true },
-    { hideSourcemaps: true },
-);
